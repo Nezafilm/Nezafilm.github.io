@@ -6,162 +6,208 @@
 <title>Nezafilm</title>
 
 <style>
-* {margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-
-body {background:#000;color:white;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#000;color:white;overflow-x:hidden;}
 
 /* HERO */
-.hero {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
+.hero{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  width:110%;
+  height:110%;
+  background:url('background.jpg') center/cover no-repeat;
+  filter:blur(14px);
+  transform:scale(1.1);
+  animation:slowZoom 20s infinite alternate;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.75);
+}
+@keyframes slowZoom{
+  from{transform:scale(1.1);}
+  to{transform:scale(1.2);}
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  width: 110%;
-  height: 110%;
-  background: url('background.jpg') center/cover no-repeat;
-  filter: blur(10px);
-  transform: scale(1.1);
-  z-index: 0;
+.hero-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  max-width:600px;
+  margin:auto;
+  animation:fadeUp 1.2s ease;
 }
 
-.hero::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-  z-index: 1;
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
 }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  max-width: 600px;
-  margin: auto;
+.logo{width:240px;margin-bottom:15px;}
+.hero p{color:#ccc;margin-bottom:20px;font-size:18px;}
+
+/* BUTTON */
+.btn{
+  padding:16px 40px;
+  background:linear-gradient(45deg,#e50914,#ff4d4d);
+  border:none;
+  border-radius:40px;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  box-shadow:0 0 30px rgba(255,0,0,0.7);
+  transition:0.3s;
+}
+.btn:hover{transform:scale(1.07);}
+
+/* PROGRESS */
+.progress-container{
+  width:80%;
+  max-width:300px;
+  height:6px;
+  background:#222;
+  border-radius:10px;
+  margin:15px auto;
+  overflow:hidden;
+  display:none;
+}
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:#e50914;
 }
 
-.logo {
-  width: 260px;
-  margin-bottom: 20px;
+/* FLOAT TELEGRAM */
+.float-tg{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#0088cc;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:26px;
+  color:white;
+  box-shadow:0 0 25px rgba(0,136,204,0.8);
+  text-decoration:none;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(0,136,204,0.7);}
+  70%{box-shadow:0 0 0 20px rgba(0,136,204,0);}
+  100%{box-shadow:0 0 0 0 rgba(0,136,204,0);}
 }
 
-.hero p {
-  margin-bottom: 25px;
-  color: #ccc;
-  font-size: 18px;
+/* SECTION */
+.section{
+  padding:60px 20px;
+  background:url('bg2.jpg') center/cover no-repeat;
 }
 
-/* DOWNLOAD BUTTON */
-.btn {
-  padding: 16px 40px;
-  background: linear-gradient(45deg,#e50914,#ff4d4d);
-  border: none;
-  border-radius: 40px;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 0 20px rgba(255,0,0,0.6);
-  transition: 0.3s;
+/* APP INFO */
+.app-info{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+  align-items:center;
 }
-
-.btn:hover {
-  transform: scale(1.05);
+.app-icon{
+  width:100px;
+  border-radius:20px;
+  box-shadow:0 0 20px rgba(255,255,255,0.1);
 }
+.stars{color:gold;margin-top:5px;}
+.verified{color:#00ff99;font-size:13px;}
 
-/* BADGES */
-.badges {
-  margin-top: 20px;
-  color: #aaa;
+/* STATS */
+.stats{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  margin-top:10px;
 }
+.stats div{text-align:center;}
 
-/* TELEGRAM */
-.social {
-  margin-top: 30px;
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.tg-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 28px;
-  border-radius: 40px;
-  background: linear-gradient(135deg, #0088cc, #00aced);
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(0,136,204,0.5);
-}
-
-.tg-btn:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 0 25px rgba(0,136,204,0.9);
-}
-
-.tg-btn.outline {
-  background: transparent;
-  border: 2px solid #0088cc;
-  box-shadow: none;
-}
-
-.tg-btn.outline:hover {
-  background: #0088cc;
+/* DESCRIPTION */
+.desc{
+  max-width:650px;
+  margin:20px auto;
+  text-align:center;
+  color:#ccc;
 }
 
 /* SCREENSHOTS */
-.section {
-  padding: 60px 20px;
-  text-align: center;
-  background: url('bg2.jpg') center/cover no-repeat;
+.screens{
+  display:flex;
+  gap:15px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+.screens img{
+  width:220px;
+  border-radius:20px;
+  transition:0.4s;
+}
+.screens img:hover{
+  transform:scale(1.08) rotate(1deg);
 }
 
-.section h2 {
-  margin-bottom: 30px;
+/* REVIEWS */
+.reviews{
+  margin-top:40px;
+  max-width:700px;
+  margin-left:auto;
+  margin-right:auto;
 }
-
-.screens {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
+.review{
+  background:#111;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:15px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.5s;
 }
-
-.screens img {
-  width: 250px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-  transition: 0.3s;
+.review.show{
+  opacity:1;
+  transform:translateY(0);
 }
+.review span{color:gold;}
 
-.screens img:hover {
-  transform: scale(1.05);
+/* DOWNLOAD COUNTER */
+.counter{
+  text-align:center;
+  margin-top:20px;
+  color:#aaa;
 }
 
 /* POPUP */
-.popup {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #111;
-  padding: 15px 20px;
-  border-radius: 10px;
-  display: none;
+.popup{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  background:#111;
+  padding:10px 15px;
+  border-radius:10px;
+  display:none;
 }
 
-/* MOBILE */
 @media(max-width:600px){
-  .logo {width:180px;}
-  .screens img {width:140px;}
+.logo{width:180px;}
+.screens img{width:140px;}
 }
 </style>
 </head>
@@ -170,50 +216,99 @@ body {background:#000;color:white;}
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
+<div class="hero-content">
 
-    <img src="logo.png" class="logo">
+<img src="logo.png" class="logo">
 
-    <p>Unlimited streaming. Anytime. Anywhere.</p>
+<p>Unlimited streaming. Anytime. Anywhere.</p>
 
-    <a href="https://raw.githubusercontent.com/Nezafilm/Nezafilm.github.io/main/nezafilm.apk" onclick="showPopup()">
-      <button class="btn">Download APK</button>
-    </a>
+<a href="https://raw.githubusercontent.com/Nezafilm/Nezafilm.github.io/main/nezafilm.apk" onclick="startDownload()">
+<button class="btn">Download APK</button>
+</a>
 
-    <div class="badges">✔ Safe • ✔ Fast • ✔ No Ads</div>
-
-    <div class="social">
-      <a href="https://t.me/nezafilm_updates" target="_blank" class="tg-btn">
-        📢 Channel
-      </a>
-
-      <a href="https://t.me/nezafilm_community" target="_blank" class="tg-btn outline">
-        💬 Community
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<!-- SCREENSHOTS -->
-<section class="section">
-  <h2>App Preview</h2>
-  <div class="screens">
-    <img src="screen1.jpg">
-    <img src="screen2.jpg">
-    <img src="screen3.jpg">
-  </div>
-</section>
-
-<!-- POPUP -->
-<div class="popup" id="popup">
-  After download: Enable "Install Unknown Apps" in your settings.
+<div class="progress-container" id="progressBox">
+<div class="progress-bar" id="progressBar"></div>
 </div>
 
+<div class="counter" id="counter">10,842 downloads</div>
+
+</div>
+</section>
+
+<!-- SECTION -->
+<section class="section">
+
+<div class="app-info">
+<img src="icon.png" class="app-icon">
+
+<div>
+<h2>Nezafilm</h2>
+<div class="stars">★★★★★</div>
+<div class="verified">✔ Verified App</div>
+
+<div class="stats">
+<div><strong>4.8</strong><br>Rating</div>
+<div><strong>10K+</strong><br>Downloads</div>
+<div><strong>18+</strong><br>Age</div>
+</div>
+</div>
+</div>
+
+<p class="desc">
+A premium streaming experience with smooth playback, modern UI, and fast performance.
+</p>
+
+<div class="screens">
+<img src="screen1.jpg">
+<img src="screen2.jpg">
+<img src="screen3.jpg">
+</div>
+
+<!-- REVIEWS -->
+<div class="reviews">
+<div class="review">Alex ⭐⭐⭐⭐⭐<br>Best app ever.</div>
+<div class="review">Maria ⭐⭐⭐⭐⭐<br>Very smooth and clean.</div>
+<div class="review">James ⭐⭐⭐⭐☆<br>Needs more content but great.</div>
+</div>
+
+</section>
+
+<!-- FLOAT TELEGRAM -->
+<a href="https://t.me/nezafilm_community" class="float-tg">💬</a>
+
+<!-- POPUP -->
+<div class="popup" id="popup">Enable unknown sources to install.</div>
+
 <script>
-function showPopup(){
-  document.getElementById("popup").style.display = "block";
+function startDownload(){
+document.getElementById("popup").style.display="block";
+let bar=document.getElementById("progressBar");
+let box=document.getElementById("progressBox");
+box.style.display="block";
+
+let width=0;
+let interval=setInterval(()=>{
+if(width>=100){
+clearInterval(interval);
+}else{
+width+=4;
+bar.style.width=width+"%";
 }
+},120);
+}
+
+/* DOWNLOAD COUNTER ANIMATION */
+let count=10842;
+setInterval(()=>{
+count+=Math.floor(Math.random()*3);
+document.getElementById("counter").innerText=count.toLocaleString()+" downloads";
+},3000);
+
+/* REVIEW ANIMATION */
+let reviews=document.querySelectorAll(".review");
+reviews.forEach((el,i)=>{
+setTimeout(()=>{el.classList.add("show")}, i*500);
+});
 </script>
 
 </body>
