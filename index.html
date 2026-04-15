@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nezafilm</title>
 
-<!-- ✅ FAVICON ADDED -->
+<!-- FAVICON -->
 <link rel="icon" type="image/png" href="favicon.png">
 
 <style>
@@ -57,7 +57,7 @@ body{background:#000;color:white;overflow-x:hidden;}
 .logo{width:240px;margin-bottom:15px;}
 .hero p{color:#ccc;margin-bottom:20px;font-size:18px;}
 
-/* BUTTON */
+/* DOWNLOAD BUTTON */
 .btn{
   padding:16px 40px;
   background:linear-gradient(45deg,#e50914,#ff4d4d);
@@ -69,7 +69,33 @@ body{background:#000;color:white;overflow-x:hidden;}
   box-shadow:0 0 30px rgba(255,0,0,0.7);
   transition:0.3s;
 }
-.btn:hover{transform:scale(1.07);}
+.btn:hover{
+  transform:scale(1.07) translateY(-3px);
+}
+
+/* TELEGRAM BUTTONS */
+.telegram-buttons{
+  margin-top:20px;
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.tg-btn{
+  padding:12px 25px;
+  border-radius:30px;
+  background:linear-gradient(135deg,#0088cc,#00aced);
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  transition:0.3s;
+  box-shadow:0 0 15px rgba(0,136,204,0.5);
+}
+.tg-btn:hover{
+  transform:translateY(-3px) scale(1.05);
+  box-shadow:0 0 25px rgba(0,136,204,0.9);
+}
 
 /* PROGRESS */
 .progress-container{
@@ -86,30 +112,6 @@ body{background:#000;color:white;overflow-x:hidden;}
   height:100%;
   width:0%;
   background:#e50914;
-}
-
-/* FLOAT TELEGRAM */
-.float-tg{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#0088cc;
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:26px;
-  color:white;
-  box-shadow:0 0 25px rgba(0,136,204,0.8);
-  text-decoration:none;
-  animation:pulse 2s infinite;
-}
-@keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(0,136,204,0.7);}
-  70%{box-shadow:0 0 0 20px rgba(0,136,204,0);}
-  100%{box-shadow:0 0 0 0 rgba(0,136,204,0);}
 }
 
 /* SECTION */
@@ -129,7 +131,6 @@ body{background:#000;color:white;overflow-x:hidden;}
 .app-icon{
   width:100px;
   border-radius:20px;
-  box-shadow:0 0 20px rgba(255,255,255,0.1);
 }
 .stars{color:gold;margin-top:5px;}
 .verified{color:#00ff99;font-size:13px;}
@@ -188,7 +189,6 @@ body{background:#000;color:white;overflow-x:hidden;}
   opacity:1;
   transform:translateY(0);
 }
-.review span{color:gold;}
 
 /* DOWNLOAD COUNTER */
 .counter{
@@ -229,6 +229,12 @@ body{background:#000;color:white;overflow-x:hidden;}
 <button class="btn">Download APK</button>
 </a>
 
+<!-- ✅ TELEGRAM BUTTONS ADDED HERE -->
+<div class="telegram-buttons">
+<a href="https://t.me/nezafilm_updates" target="_blank" class="tg-btn">📢 Channel</a>
+<a href="https://t.me/nezafilm_community" target="_blank" class="tg-btn">💬 Community</a>
+</div>
+
 <div class="progress-container" id="progressBox">
 <div class="progress-bar" id="progressBar"></div>
 </div>
@@ -261,7 +267,6 @@ body{background:#000;color:white;overflow-x:hidden;}
 A premium streaming experience with smooth playback, modern UI, and fast performance.
 </p>
 
-<!-- ✅ NOW 10 SCREENS -->
 <div class="screens">
 <img src="screen1.jpg">
 <img src="screen2.jpg">
@@ -283,9 +288,6 @@ A premium streaming experience with smooth playback, modern UI, and fast perform
 </div>
 
 </section>
-
-<!-- FLOAT TELEGRAM -->
-<a href="https://t.me/nezafilm_community" class="float-tg">💬</a>
 
 <!-- POPUP -->
 <div class="popup" id="popup">Enable unknown sources to install.</div>
