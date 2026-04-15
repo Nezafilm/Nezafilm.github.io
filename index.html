@@ -15,8 +15,9 @@ body{background:#000;color:white;overflow-x:hidden;}
 /* HERO */
 .hero{
   position:relative;
-  height:100vh;
+  min-height:100vh;
   overflow:hidden;
+  padding-bottom:40px;
 }
 .hero::before{
   content:"";
@@ -44,20 +45,15 @@ body{background:#000;color:white;overflow-x:hidden;}
   position:relative;
   z-index:2;
   text-align:center;
-  max-width:600px;
+  max-width:800px;
   margin:auto;
-  animation:fadeUp 1.2s ease;
-}
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px);}
-  to{opacity:1;transform:translateY(0);}
+  padding-top:80px;
 }
 
 .logo{width:240px;margin-bottom:15px;}
 .hero p{color:#ccc;margin-bottom:20px;font-size:18px;}
 
-/* DOWNLOAD BUTTON */
+/* BUTTON */
 .btn{
   padding:16px 40px;
   background:linear-gradient(45deg,#e50914,#ff4d4d);
@@ -81,7 +77,6 @@ body{background:#000;color:white;overflow-x:hidden;}
   justify-content:center;
   flex-wrap:wrap;
 }
-
 .tg-btn{
   padding:12px 25px;
   border-radius:30px;
@@ -90,11 +85,26 @@ body{background:#000;color:white;overflow-x:hidden;}
   text-decoration:none;
   font-size:14px;
   transition:0.3s;
-  box-shadow:0 0 15px rgba(0,136,204,0.5);
 }
 .tg-btn:hover{
   transform:translateY(-3px) scale(1.05);
-  box-shadow:0 0 25px rgba(0,136,204,0.9);
+}
+
+/* SCREEN CAROUSEL IN HERO */
+.hero-screens{
+  margin-top:40px;
+  display:flex;
+  gap:15px;
+  overflow-x:auto;
+  padding:10px;
+}
+.hero-screens img{
+  height:380px;
+  border-radius:20px;
+  transition:0.3s;
+}
+.hero-screens img:hover{
+  transform:scale(1.08);
 }
 
 /* PROGRESS */
@@ -132,42 +142,8 @@ body{background:#000;color:white;overflow-x:hidden;}
   width:100px;
   border-radius:20px;
 }
-.stars{color:gold;margin-top:5px;}
+.stars{color:gold;}
 .verified{color:#00ff99;font-size:13px;}
-
-/* STATS */
-.stats{
-  display:flex;
-  gap:20px;
-  justify-content:center;
-  margin-top:10px;
-}
-.stats div{text-align:center;}
-
-/* DESCRIPTION */
-.desc{
-  max-width:650px;
-  margin:20px auto;
-  text-align:center;
-  color:#ccc;
-}
-
-/* SCREENSHOTS */
-.screens{
-  display:flex;
-  gap:15px;
-  justify-content:center;
-  flex-wrap:wrap;
-  margin-top:20px;
-}
-.screens img{
-  width:220px;
-  border-radius:20px;
-  transition:0.4s;
-}
-.screens img:hover{
-  transform:scale(1.08) rotate(1deg);
-}
 
 /* REVIEWS */
 .reviews{
@@ -190,7 +166,7 @@ body{background:#000;color:white;overflow-x:hidden;}
   transform:translateY(0);
 }
 
-/* DOWNLOAD COUNTER */
+/* COUNTER */
 .counter{
   text-align:center;
   margin-top:20px;
@@ -210,7 +186,7 @@ body{background:#000;color:white;overflow-x:hidden;}
 
 @media(max-width:600px){
 .logo{width:180px;}
-.screens img{width:140px;}
+.hero-screens img{height:240px;}
 }
 </style>
 </head>
@@ -229,7 +205,7 @@ body{background:#000;color:white;overflow-x:hidden;}
 <button class="btn">Download APK</button>
 </a>
 
-<!-- ✅ TELEGRAM BUTTONS ADDED HERE -->
+<!-- TELEGRAM -->
 <div class="telegram-buttons">
 <a href="https://t.me/nezafilm_updates" target="_blank" class="tg-btn">📢 Channel</a>
 <a href="https://t.me/nezafilm_community" target="_blank" class="tg-btn">💬 Community</a>
@@ -240,6 +216,17 @@ body{background:#000;color:white;overflow-x:hidden;}
 </div>
 
 <div class="counter" id="counter">10,842 downloads</div>
+
+<!-- ✅ SCREENS 4–10 HERE -->
+<div class="hero-screens">
+<img src="screen4.jpg">
+<img src="screen5.jpg">
+<img src="screen6.jpg">
+<img src="screen7.jpg">
+<img src="screen8.jpg">
+<img src="screen9.jpg">
+<img src="screen10.jpg">
+</div>
 
 </div>
 </section>
@@ -254,30 +241,7 @@ body{background:#000;color:white;overflow-x:hidden;}
 <h2>Nezafilm</h2>
 <div class="stars">★★★★★</div>
 <div class="verified">✔ Verified App</div>
-
-<div class="stats">
-<div><strong>4.8</strong><br>Rating</div>
-<div><strong>10K+</strong><br>Downloads</div>
-<div><strong>18+</strong><br>Age</div>
 </div>
-</div>
-</div>
-
-<p class="desc">
-A premium streaming experience with smooth playback, modern UI, and fast performance.
-</p>
-
-<div class="screens">
-<img src="screen1.jpg">
-<img src="screen2.jpg">
-<img src="screen3.jpg">
-<img src="screen4.jpg">
-<img src="screen5.jpg">
-<img src="screen6.jpg">
-<img src="screen7.jpg">
-<img src="screen8.jpg">
-<img src="screen9.jpg">
-<img src="screen10.jpg">
 </div>
 
 <!-- REVIEWS -->
@@ -295,6 +259,7 @@ A premium streaming experience with smooth playback, modern UI, and fast perform
 <script>
 function startDownload(){
 document.getElementById("popup").style.display="block";
+
 let bar=document.getElementById("progressBar");
 let box=document.getElementById("progressBox");
 box.style.display="block";
@@ -310,14 +275,14 @@ bar.style.width=width+"%";
 },120);
 }
 
-/* DOWNLOAD COUNTER */
+/* COUNTER */
 let count=10842;
 setInterval(()=>{
 count+=Math.floor(Math.random()*3);
 document.getElementById("counter").innerText=count.toLocaleString()+" downloads";
 },3000);
 
-/* REVIEW ANIMATION */
+/* REVIEWS */
 let reviews=document.querySelectorAll(".review");
 reviews.forEach((el,i)=>{
 setTimeout(()=>{el.classList.add("show")}, i*500);
